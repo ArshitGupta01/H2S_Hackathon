@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+        "react/": "https://aistudiocdn.com/react@^19.1.1/",
+        "react": "https://aistudiocdn.com/react@^19.1.1",
+        "html2canvas": "https://aistudiocdn.com/html2canvas@^1.4.1",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.16.0",
+        "jspdf": "https://aistudiocdn.com/jspdf@^3.0.2"
+      }
+    }
+    </script>
+    <meta charset="UTF-8" />
+    <title>AI Career Advisor | Your Personalized Career Roadmap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Get a personalized career roadmap with AI. Answer a few questions about your interests and skills to discover career paths, skills to develop, and a multi-year plan to achieve your goals. Perfect for students and early-career professionals." />
+    <meta name="keywords" content="ai career advisor, career path generator, career roadmap, personalized career guide, tech careers, student career advice, job skills development, career planning" />
+    <meta name="author" content="AI Career Advisor" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://career-advisor.ai" />
+    <meta property="og:title" content="AI Career Advisor | Your Personalized Career Roadmap" />
+    <meta property="og:description" content="Get a personalized career roadmap with AI. Answer a few questions to discover career paths, skills to develop, and a multi-year plan to achieve your goals." />
+    <meta property="og:image" content="data:image/svg+xml,%3csvg width='1200' height='630' viewBox='0 0 1200 630' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3clinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%2301020d;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%231e1b4b;stop-opacity:1' /%3e%3c/linearGradient%3e%3cstyle%3e@import url('https://fonts.googleapis.com/css2?family=Sora:wght@700&amp;family=Inter:wght@400;600&amp;display=swap');%3c/style%3e%3c/defs%3e%3crect width='1200' height='630' fill='url(%23grad1)' /%3e%3ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' font-family='\'Sora\', sans-serif' font-size='80' font-weight='700' fill='%23f1f5f9'%3eAI Career Advisor%3c/text%3e%3ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-family='\'Inter\', sans-serif' font-size='36' font-weight='400' fill='%2394a3b8'%3eYour Personalized Career Roadmap%3c/text%3e%3c/svg%3e" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://career-advisor.ai" />
+    <meta property="twitter:title" content="AI Career Advisor | Your Personalized Career Roadmap" />
+    <meta property="twitter:description" content="Get a personalized career roadmap with AI. Answer a few questions to discover career paths, skills to develop, and a multi-year plan to achieve your goals." />
+    <meta property="twitter:image" content="data:image/svg+xml,%3csvg width='1200' height='630' viewBox='0 0 1200 630' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3clinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%2301020d;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%231e1b4b;stop-opacity:1' /%3e%3c/linearGradient%3e%3cstyle%3e@import url('https://fonts.googleapis.com/css2?family=Sora:wght@700&amp;family=Inter:wght@400;600&amp;display=swap');%3c/style%3e%3c/defs%3e%3crect width='1200' height='630' fill='url(%23grad1)' /%3e%3ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' font-family='\'Sora\', sans-serif' font-size='80' font-weight='700' fill='%23f1f5f9'%3eAI Career Advisor%3c/text%3e%3ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-family='\'Inter\', sans-serif' font-size='36' font-weight='400' fill='%2394a3b8'%3eYour Personalized Career Roadmap%3c/text%3e%3c/svg%3e" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="data:image/svg+xml,%3csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cfilter id='neon-glow' x='-50%25' y='-50%25' width='200%25' height='200%25'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='0.7' result='blur'/%3e%3cfeMerge%3e%3cfeMergeNode in='blur'/%3e%3cfeMergeNode in='SourceGraphic'/%3e%3c/feMerge%3e%3c/filter%3e%3c/defs%3e%3cpath d='M21 9H16V7a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1z' stroke='%233b82f6' stroke-width='1.5' fill='%231e40af' /%3e%3crect x='11.25' y='13' width='1.5' height='1.5' rx='0.25' stroke='%233b82f6' stroke-width='1.5' fill='none'/%3e%3cg filter='url(%23neon-glow)' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M14 6 C14 3.5 11 2.5 9 4.5 C7 6.5 7 10.5 9 12.5 L 9 18' fill='%230ea5e9' stroke='%237dd3fc' stroke-width='2'/%3e%3ccircle cx='11' cy='7' r='1.2' fill='none' stroke='%237dd3fc' stroke-width='1.5'/%3e%3ccircle cx='11' cy='11' r='1.2' fill='none' stroke='%237dd3fc' stroke-width='1.5'/%3e%3cpath d='M11 8.2V9.8' stroke='%237dd3fc' stroke-width='1.5'/%3e%3cpath d='M9.5 7.0 C 9 7 9 6 9.5 6' stroke='%237dd3fc' stroke-width='1.5' fill='none'/%3e%3cpath d='M12.2 7 H 13' stroke='%237dd3fc' stroke-width='1.5' /%3e%3c/g%3e%3c/svg%3e">
+    <script>
+      // Prevents "flash of incorrect theme"
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'bg-primary': 'var(--color-bg-primary)',
+              'bg-secondary': 'var(--color-bg-secondary)',
+              'card-bg': 'var(--color-card-bg)',
+              'card-border': 'var(--color-card-border)',
+              'accent': 'var(--color-accent)',
+              'accent-hover': 'var(--color-accent-hover)',
+              'text-primary': 'var(--color-text-primary)',
+              'text-secondary': 'var(--color-text-secondary)',
+            },
+            animation: {
+              'fade-in': 'fade-in 0.6s ease-out forwards',
+              'slide-in': 'slide-in 0.5s ease-out forwards',
+              'gradient-animation': 'gradient-animation 15s ease infinite',
+              'button-pulse': 'button-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1)',
+              'slide-up-fade': 'slide-up-fade 0.3s ease-out forwards',
+              'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
+              'aurora-spin': 'aurora-spin 8s linear infinite',
+              'pulse-bounce': 'pulse-bounce 1.4s infinite ease-in-out',
+            },
+            keyframes: {
+              'fade-in': {
+                '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+               'slide-in': {
+                '0%': { opacity: '0', transform: 'translateX(20px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' },
+              },
+              'gradient-animation': {
+                '0%': { 'background-position': '0% 50%' },
+                '50%': { 'background-position': '100% 50%' },
+                '100%': { 'background-position': '0% 50%' },
+              },
+              'button-pulse': {
+                '0%, 100%': {
+                    'box-shadow': '0 0 0 0 rgba(99, 102, 241, 0.7)',
+                },
+                '70%': {
+                    'box-shadow': '0 0 0 15px rgba(99, 102, 241, 0)',
+                },
+              },
+              'slide-up-fade': {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              'pulse-glow': {
+                '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+                '50%': { transform: 'scale(1.15)', opacity: '0.7' },
+              },
+              'aurora-spin': {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' },
+              },
+              'pulse-bounce': {
+                '0%, 100%': { transform: 'translateY(0)', opacity: '1' },
+                '50%': { transform: 'translateY(-4px)', opacity: '0.7' },
+              },
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --font-heading: 'Sora', sans-serif;
+        --font-body: 'Inter', sans-serif;
+        
+        --color-bg-primary: #f8fafc; /* slate-50 */
+        --color-bg-secondary: #eef2ff; /* indigo-50 */
+        --color-card-bg: rgba(255, 255, 255, 0.75);
+        --color-card-border: rgba(0, 0, 0, 0.08);
+        --color-accent: #4f46e5; /* indigo-600 */
+        --color-accent-hover: #4338ca; /* indigo-700 */
+        --color-text-primary: #1e293b; /* slate-800 */
+        --color-text-secondary: #475569; /* slate-600 */
+      }
+
+      html.dark {
+        --color-bg-primary: #0b1120;
+        --color-bg-secondary: #020617; /* slate-950 */
+        --color-card-bg: rgba(15, 23, 42, 0.5); /* slate-900/50 */
+        --color-card-border: rgba(255, 255, 255, 0.1);
+        --color-accent: #6366f1; /* indigo-500 */
+        --color-accent-hover: #4f46e5; /* indigo-600 */
+        --color-text-primary: #f8fafc; /* slate-50 */
+        --color-text-secondary: #94a3b8; /* slate-400 */
+      }
+      
+      /* CUSTOM SCROLLBAR */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background-color: var(--color-bg-primary);
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: var(--color-accent);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--color-accent-hover);
+      }
+      
+      body {
+        font-family: var(--font-body);
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-primary);
+        background-image: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-primary), #1e293b, #312e81);
+        background-size: 250% 250%;
+        animation: gradient-animation 25s ease infinite;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 17px;
+        line-height: 1.7;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        color: var(--color-text-primary);
+      }
+
+      .gradient-text {
+        background-image: linear-gradient(90deg, var(--color-accent), #a855f7); /* purple-500 */
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      html.dark .gradient-text {
+         background-image: linear-gradient(90deg, #818cf8, #c084fc); /* indigo-300, purple-400 */
+      }
+      
+      .glass-card {
+        background-color: var(--color-card-bg);
+        border: 1px solid var(--color-card-border);
+        border-radius: 24px;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Interactive Glow Effect - for mouse devices */
+      @media (pointer: fine) {
+        .glass-card::after {
+          content: '';
+          position: absolute;
+          left: var(--mouse-x, -100px);
+          top: var(--mouse-y, -100px);
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+          transform: translate(-50%, -50%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+          filter: blur(20px);
+        }
+
+        .glass-card:hover::after {
+          opacity: 0.15;
+        }
+        html.dark .glass-card:hover::after {
+          opacity: 0.3;
+        }
+      }
+
+      /* Aurora Border effect - only for report cards */
+      .report-display-grid .glass-card::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        height: 150%;
+        z-index: -1;
+        background: conic-gradient(
+          from 0deg,
+          #6366f1, /* indigo-500 */
+          #a855f7, /* purple-500 */
+          #ec4899, /* pink-500 */
+          #a855f7, /* purple-500 */
+          #6366f1
+        );
+        transform-origin: center center;
+        transform: translate(-50%, -50%);
+        animation: aurora-spin 8s linear infinite;
+        opacity: 0.2;
+        filter: blur(32px);
+      }
+      html.dark .report-display-grid .glass-card::before {
+          opacity: 0.35;
+      }
+      
+      #starfield {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+    </style>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
